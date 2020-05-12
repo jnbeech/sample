@@ -2,14 +2,13 @@
 /*global $*/
 /*global location*/
 
-// interpolateProvider: https://katydecorah.com/code/jekyll-and-angular/
-// https://stackoverflow.com/questions/25334327/change-start-and-end-symbol-in-jekyll-to-avoid-angular-conflict
-
 (function () {
   var queryDict = {};
   location.search.substr(1).split("&").forEach(function (item) {
     queryDict[item.split("=")[0]] = item.split("=")[1]
   });
+  
+  // interpolateProvider: https://katydecorah.com/code/jekyll-and-angular/
   var app = angular.module('benefitCalculator', [],
     function ($interpolateProvider) {
       $interpolateProvider.startSymbol('[[');
@@ -20,9 +19,7 @@
     // Get settings
     $.getJSON("/sample/assets/settings.json").then(function (settings) {
       $scope.settings = settings;
-      console.log($scope.settings)
       $scope.config = settings.config;
-      console.log($scope.config)
       $scope.planYear = settings.config.planYear;
       $scope.insurancePlans = settings[settings.config.planYear].fixed_employee;
       $scope.stdAgeMap = settings[settings.config.planYear].stdlife;
@@ -33,7 +30,6 @@
       $scope.planLevels = settings.levels;
       $scope.totalHours = settings.config.salaryHours;
       $scope.$apply()
-      console.log($scope)
     });
 
     // Income

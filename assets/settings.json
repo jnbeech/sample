@@ -10,7 +10,7 @@
         "Recommended": 15,
         "Flexible": 6
     },
-    "levels": ["Employee Only", "Employee + Spouse", "Employee + Children", "Family"],
+    "levels": ["Employee Only", "Employee + Spouse", "Employee + Dependent(s)", "Family"],
     "2020": {
         "_401kEmployerContribution": 10,
         "fixed_employee": {
