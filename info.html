@@ -15,7 +15,6 @@ js:
 - "/assets/js/info.js"
 ---
 
-{% raw %} 
 <div class="colmask doublepage pay-calculator ng-scope" ng-app="benefitCalculator" ng-controller="MainController">
     <div class="colleft">
         <div class="col1">
@@ -64,9 +63,9 @@ js:
                                     <input type="number" min="1" ng-model="totalHours" style="width: 48px"
                                         ng-disabled="payRate() &lt;= 0"
                                         class="ng-pristine ng-untouched ng-valid ng-valid-min" disabled="disabled">
-                                    ({{timeOff()}} days off)
+                                    ([[timeOff()]] days off)
                                     <img src="{{ "/assets/img/help.png" | relative_url }}"
-                                        title="{{config.salaryHours}} hours is equivalent to a year of 40-hour workweeks, less {{timeOff()}} days of PTO or Leave without Pay (LWOP).">
+                                        title="[[config.salaryHours]] hours is equivalent to a year of 40-hour workweeks, less [[timeOff()]] days of PTO or Leave without Pay (LWOP).">
                                 </p>
                                 <p>
                                     <label>
@@ -116,7 +115,7 @@ js:
             <br>
             <fieldset ng-disabled="payRate() &lt;= 0" disabled="disabled">
                 <legend>Benefits</legend>
-                <p>&nbsp;<i class="ng-binding">Insurance benefits are effective January 1, {{planYear}}.</i>
+                <p>&nbsp;<i class="ng-binding">Insurance benefits are effective January 1, [[planYear]].</i>
                 </p>
                 <table class="benefits" style="width: 100%;">
                     <tbody>
@@ -132,14 +131,14 @@ js:
                         </tr>
                         <!-- ngRepeat: benefit in benefits -->
                         <tr ng-repeat="benefit in benefits" class="ng-scope">
-                            <td class="ng-binding">{{benefit}}</td>
+                            <td class="ng-binding">[[benefit]]</td>
                             <td>
                                 <select style="width: 100%" ng-model="plan[benefit]"
                                     ng-init="plan[benefit] = &#39;--&#39;" class="ng-pristine ng-untouched ng-valid">
                                     <option value="--" selected="">None</option>
                                     <!-- ngRepeat: (key, junk) in insurancePlans[benefit] -->
-                                    <option ng-repeat="(key, junk) in insurancePlans[benefit]" value="{{key}}"
-                                        class="ng-binding ng-scope">{{key}}</option>
+                                    <option ng-repeat="(key, junk) in insurancePlans[benefit]" value="[[key]]"
+                                        class="ng-binding ng-scope">[[key]]</option>
                                     <!-- end ngRepeat: (key, junk) in insurancePlans[benefit] -->
                                 </select>
                             </td>
@@ -149,10 +148,10 @@ js:
                                     class="ng-pristine ng-untouched ng-valid"></select>
                             </td>
                             <td style="text-align: right;" class="ng-binding">
-                                {{ cost(planYear, benefit, plan[benefit], level[benefit]) | currency }}
+                                [[ cost(planYear, benefit, plan[benefit], level[benefit]) | currency ]]
                             </td>
                             <td style="text-align: right;" class="ng-binding">
-                                {{ cost(planYear, benefit, plan[benefit], level[benefit]) | currency }}
+                                [[ cost(planYear, benefit, plan[benefit], level[benefit]) | currency ]]
                             </td>
                         </tr><!-- end ngRepeat: benefit in benefits -->
                         <tr>
@@ -163,7 +162,7 @@ js:
                                     class="ng-pristine ng-untouched ng-valid">
                                     <option value="--" selected="">None</option>
                                     <option value="std" class="ng-binding">Weekly Benefit -
-                                        {{stdBenefit()|currency}}</option>
+                                        [[stdBenefit()|currency]]</option>
                                 </select>
                             </td>
                             <td>
@@ -174,15 +173,15 @@ js:
                                         age group</option>
                                 </select>
                             </td>
-                            <td style="text-align: right;" class="ng-binding">{{stdRate | currency}}</td>
-                            <td style="text-align: right;" class="ng-binding">{{stdCost() | currency }}</td>
+                            <td style="text-align: right;" class="ng-binding">[[stdRate | currency]]</td>
+                            <td style="text-align: right;" class="ng-binding">[[stdCost() | currency ]]</td>
                         </tr>
                         <tr>
                             <td colspan="4"><i class="muted">Company Paid Benefits</i></td>
                         </tr>
                         <tr>
                             <td><abbr title="Long Term Disability">LTD</abbr></td>
-                            <td colspan="2" class="ng-binding">Monthly Benefit - {{ltdBenefit()|currency}}
+                            <td colspan="2" class="ng-binding">Monthly Benefit - [[ltdBenefit()|currency]]
                             </td>
                             <td style="text-align: right;" class="ng-binding">$0.00</td>
                             <td style="text-align: right;" class="ng-binding">$0.00</td>
@@ -203,8 +202,8 @@ js:
                             <td></td>
                             <td></td>
                             <td>Total</td>
-                            <td class="ng-binding">{{monthyInsuranceRate()|currency}}</td>
-                            <td class="ng-binding">{{annualInsuranceRate()|currency}}</td>
+                            <td class="ng-binding">[[monthyInsuranceRate()|currency]]</td>
+                            <td class="ng-binding">[[annualInsuranceRate()|currency]]</td>
                         </tr>
                     </tbody>
                 </table>
@@ -260,76 +259,76 @@ js:
                         </tr>
                         <tr>
                             <td class="label">Pay Stub Rate:</td>
-                            <td class="value">{{payRate()|currency}}</td>
+                            <td class="value">[[payRate()|currency]]</td>
                             <td><img src="{{ "/assets/img/help.png" | relative_url }}"
                                     title="Your effective pay rate as it will appear on your pay stub." />
                             </td>
                         </tr>
                         <tr>
                             <td class="label">Hours Worked:</td>
-                            <td class="value">{{totalHours}}</td>
+                            <td class="value">[[totalHours]]</td>
                         </tr>
                         <tr>
                             <td class="label">Flexible Leave Hours Accrued:</td>
-                            <td class="value">{{annualPTOHours()|number:3}}</td>
+                            <td class="value">[[annualPTOHours()|number:3]]</td>
                         </tr>
                         <tr>
                             <td class="label">Flexible Leave Pay:</td>
-                            <td class="value">{{annualPTOPay()|currency}}</td>
+                            <td class="value">[[annualPTOPay()|currency]]</td>
                             <td><img src="{{ "/assets/img/help.png" | relative_url }}"
                                     title="Income from PTO if all PTO is used in the calendar year." /></td>
                         </tr>
                         <tr>
                             <td class="label">Gross Income:</td>
-                            <td class="value">{{grossIncome()|currency}}</td>
+                            <td class="value">[[grossIncome()|currency]]</td>
                         </tr>
                         <tr>
                             <th><strong>Retirement</strong></th>
                         </tr>
                         <tr>
                             <td class="label">Employee 401(k) Contribution:</td>
-                            <td class="value">{{employee401kContribution()|currency}}</td>
+                            <td class="value">[[employee401kContribution()|currency]]</td>
                             <td><img ng-show="employee401kContribution() == max401k()"
                                     src="{{ "/assets/img/help.png" | relative_url }}"
-                                    title="Your maximum employee 401(k) contribution for {{maxYear}} is {{max401k()|currency}}." />
+                                    title="Your maximum employee 401(k) contribution for [[maxYear]] is [[max401k()|currency]]." />
                             </td>
                         </tr>
                         <tr>
                             <td class="label">Company 401(k) Contribution:</td>
-                            <td class="value">{{employer401kContribution()|currency}}</td>
+                            <td class="value">[[employer401kContribution()|currency]]</td>
                             <td><img ng-show="employer401kContribution() == maxEmployer401kContribution()"
                                     src="{{ "/assets/img/help.png" | relative_url }}"
-                                    title="The maximum employer contribution for {{maxYear}} is {{maxEmployer401kContribution()|currency}}." />
+                                    title="The maximum employer contribution for [[maxYear]] is [[maxEmployer401kContribution()|currency]]." />
                             </td>
                         </tr>
                         <tr>
                             <td class="label">Total 401(k) Contribution:</td>
-                            <td class="value">{{total401kContribution()|currency}}</td>
+                            <td class="value">[[total401kContribution()|currency]]</td>
                         </tr>
                         <tr>
                             <th><strong>Benefits</strong></th>
                         </tr>
                         <tr>
                             <td class="label">Annual Insurance Premiums:</td>
-                            <td class="value">{{annualInsuranceRate()|currency}}</td>
+                            <td class="value">[[annualInsuranceRate()|currency]]</td>
                         </tr>
                         <tr>
                             <td class="label">Annual HSA Contribution:</td>
-                            <td class="value">{{totalHSAContribution()|currency}}</td>
+                            <td class="value">[[totalHSAContribution()|currency]]</td>
                         </tr>
                         <tr>
                             <th><strong>Totals</strong></th>
                         </tr>
                         <tr>
                             <td class="label">Taxable Gross Income:</td>
-                            <td class="value">{{adjustedGrossIncome()|currency}}</td>
+                            <td class="value">[[adjustedGrossIncome()|currency]]</td>
                             <td><img src="{{ "/assets/img/help.png" | relative_url }}"
                                     title="Taxable Gross Income is an estimate of the income you can expect to see on your W-2 at the end of the year." />
                             </td>
                         </tr>
                         <tr>
                             <td class="label">Total Compensation:</td>
-                            <td class="value">{{totalCompensation()|currency}}</td>
+                            <td class="value">[[totalCompensation()|currency]]</td>
                         </tr>
                     </tbody>
                 </table>
@@ -347,4 +346,3 @@ js:
         </div>
     </div>
 </div>
-{% endraw %} 

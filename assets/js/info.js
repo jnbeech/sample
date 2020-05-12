@@ -10,7 +10,11 @@
   location.search.substr(1).split("&").forEach(function (item) {
     queryDict[item.split("=")[0]] = item.split("=")[1]
   });
-  var app = angular.module('benefitCalculator', []);
+  var app = angular.module('benefitCalculator', [],
+    function ($interpolateProvider) {
+      $interpolateProvider.startSymbol('[[');
+      $interpolateProvider.endSymbol(']]');
+    });
 
   app.controller('MainController', ['$scope', '$http', function ($scope, $http) {
     // Get settings
