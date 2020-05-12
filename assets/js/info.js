@@ -2,12 +2,19 @@
 /*global $*/
 /*global location*/
 
+// interpolateProvider: https://katydecorah.com/code/jekyll-and-angular/
+// https://stackoverflow.com/questions/25334327/change-start-and-end-symbol-in-jekyll-to-avoid-angular-conflict
+
 (function () {
   var queryDict = {};
   location.search.substr(1).split("&").forEach(function (item) {
     queryDict[item.split("=")[0]] = item.split("=")[1]
   });
-  var app = angular.module('benefitCalculator', []);
+  var app = angular.module('benefitCalculator', [],
+    function ($interpolateProvider) {
+      $interpolateProvider.startSymbol('[[');
+      $interpolateProvider.endSymbol(']]');
+    });
 
   app.controller('MainController', ['$scope', '$http', function ($scope, $http) {
     // Get settings
