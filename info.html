@@ -1,0 +1,69 @@
+---
+layout: default
+title: Info
+subtitle: Flex Info
+---
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js">
+</script>
+<script type="text/javascript" sec="assets/js/info.js"></script>
+<form action="" id="form" name="form">
+    <tr>Salary:
+        <select name="salary_unit">
+            <option value="hour">Hour</option>
+            <option value="year" selected>Year</option>
+        </select>
+        <input name="salary" type="text" value="100000">
+        <div id="salary">???</div>
+    </tr>
+    <tr>Leave:
+        <select name="leave_unit">
+            <option value="hour">Hours</option>
+            <option value="day" selected>Days</option>
+            <option value="week">Weeks</option>
+        </select>
+        <input name="leave" type="text" value="40">
+        <div id="leave">???</div>
+    </tr>
+    <tr>401k:
+        <select name="retirement_unit">
+            <option value="percent">Percent</option>
+        </select>
+        <input name="retirement" type="text" value="10">
+        <div id="retirement">???</div>
+    </tr>
+    <tr>Health Care:
+        <select name="health_unit">
+            <option value="percent">Percent</option>
+        </select>
+        <input name="health" type="text" value="100">
+        <br />
+        <fieldset id="health_type">
+            <input name="health_cost" checked="checked" type="radio" value="10000">Single</input>
+            <input name="health_cost" type="radio" value="12000">Single + 1 Dependent</input>
+            <input name="health_cost" type="radio" value="22000">Family</input>
+        </fieldset>
+        <div id="health">???</div>
+    </tr>
+    <tr>Training:
+        <input name="training" type="text" value="5000">
+        Taken?
+        <fieldset id="training_taken">
+            <input name="training_cash" type="radio" value="0">Yes</input>
+            <input name="training_cash" checked="checked" type="radio" value="80">No</input>
+        </fieldset>
+        <div id="training">???</div>
+    </tr>
+    <tr>
+        <br />
+        Set Of X:
+        <button type="button" onclick="calculate(this)">Package</button>
+        <div id="benefit">???</div>
+        <div id="package">???</div>
+    </tr>
+    <!--<tr>Hours Worked:
+            (2080 possible)
+            <input name="hours" type="text" value="1820">
+            <div id="hours"></div>
+        </tr>-->
+</form>
