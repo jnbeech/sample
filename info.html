@@ -30,44 +30,6 @@ js:
                                     <input type="number" ng-model="tcRate" style="width: 58px" step="0.01" min="0"
                                         class="ng-pristine ng-untouched ng-valid ng-valid-min">
                                 </p>
-                                <p>
-                                    <label>
-                                        <strong>Retirement Benefit</strong>
-                                        <img src="{{ "/assets/img/help.png" | relative_url }}"
-                                            title="As Retirement Benefit Non-Eligible, you will not be able to contribute to 401(k). Retirement Benefit Eligible allows employee 401k contribution percentage (changable through the year) with an Employer Non-Elective Contribution of [[_401kEmployerContribution]]% of your Gross Income.">
-                                    </label>
-                                    <br>
-                                    <label>
-                                        <input type="radio" ng-model="rbe" ng-value="false"
-                                            ng-disabled="payRate() &lt;= 0" class="ng-pristine ng-untouched ng-valid"
-                                            name="4" value="false" disabled="disabled">
-                                        Non-Eligible
-                                    </label><br>
-                                    <label class="ng-binding">
-                                        <input type="radio" ng-model="rbe" ng-value="true"
-                                            ng-disabled="payRate() &lt;= 0" class="ng-pristine ng-untouched ng-valid"
-                                            name="3" value="true" disabled="disabled">
-                                        Eligible (includes [[_401kEmployerContribution]]% Employer Non-Elective
-                                        Contribution)
-                                    </label><br>
-                                    <p ng-show="rbe">
-                                        <label>Employee Contribution
-                                            <img src="{{ "/assets/img/help.png" | relative_url }}"
-                                                title="Retirement Benefit Eligible employees who are or will turn 50 years of age during the calendar year are eligible to make catch-up contributions. The maximum amount of catch-up contributions that can be contributed in 2020 is $6,500.00.">
-                                        </label><br>
-                                        <input type="checkbox" ng-model="catch_up"
-                                            class="ng-pristine ng-untouched ng-valid"> Eligible to make catch-up
-                                        contributions
-                                        <br>
-                                        <input type="number" ng-model="_401kPercent" style="width: 34px" min="0"
-                                            class="ng-pristine ng-untouched ng-valid ng-valid-min">% 401k Employee
-                                        Contribution
-                                        <br>
-                                    </p>
-                                </p>
-                            </td>
-                            <td>&nbsp;&nbsp;</td>
-                            <td valign="top">
                                 <p class="ng-binding">
                                     <label><strong>Projected Hours Wored</strong></label><br>
                                     <input type="number" min="1" ng-model="totalHours" style="width: 58px"
@@ -75,8 +37,11 @@ js:
                                         class="ng-pristine ng-untouched ng-valid ng-valid-min" disabled="disabled">
                                     ([[timeOff()]] days off)
                                     <img src="{{ "/assets/img/help.png" | relative_url }}"
-                                        title="[[config.salaryHours]] hours is equivalent to a year of 40-hour workweeks, less [[timeOff()]] days of PTO or Leave without Pay (LWOP).">
+                                        title="[[config.salaryHours]] hours is equivalent to a year of 40-hour workweeks, less [[(config.stdHours - config.salaryHours) / 8]] days of PTO or Leave without Pay (LWOP).">
                                 </p>
+                            </td>
+                            <td style="width: 1pc;"></td>
+                            <td valign="top">
                                 <p>
                                     <label>
                                         <strong><abbr title="Personal Time Off">PTO</abbr> Plan</strong>
@@ -106,6 +71,42 @@ js:
                                         <img src="{{ "/assets/img/help.png" | relative_url }}"
                                             title="Employees accrue PTO 1 hour for every 6 hours worked (0.16666).">
                                     </label><br>
+                                </p>
+                                <p>
+                                    <label>
+                                        <strong>Retirement Benefit</strong>
+                                        <img src="{{ "/assets/img/help.png" | relative_url }}"
+                                            title="As Retirement Benefit Non-Eligible, you will not be able to contribute to 401(k). Retirement Benefit Eligible allows employee 401k contribution percentage (changable through the year) with an Employer Non-Elective Contribution of [[_401kEmployerContribution]]% of your Gross Income.">
+                                    </label>
+                                    <br>
+                                    <label>
+                                        <input type="radio" ng-model="rbe" ng-value="false"
+                                            ng-disabled="payRate() &lt;= 0" class="ng-pristine ng-untouched ng-valid"
+                                            name="4" value="false" disabled="disabled">
+                                        Non-Eligible
+                                    </label><br>
+                                    <label class="ng-binding">
+                                        <input type="radio" ng-model="rbe" ng-value="true"
+                                            ng-disabled="payRate() &lt;= 0" class="ng-pristine ng-untouched ng-valid"
+                                            name="3" value="true" disabled="disabled">
+                                        Eligible (includes [[_401kEmployerContribution]]% Employer Non-Elective
+                                        Contribution)
+                                    </label><br>
+                                    <p ng-show="rbe">
+                                        <label>
+                                        <strong>Employee 401k Contribution</strong>
+                                            <img src="{{ "/assets/img/help.png" | relative_url }}"
+                                                title="Retirement Benefit Eligible employees who are or will turn 50 years of age during the calendar year are eligible to make catch-up contributions. The maximum amount of catch-up contributions that can be contributed in [[maximumYear]] is [[max401k()|currency]]">
+                                        </label><br>
+                                        <input type="checkbox" ng-model="catch_up"
+                                            class="ng-pristine ng-untouched ng-valid"> Eligible to make catch-up
+                                        contributions
+                                        <br>
+                                        <input type="number" ng-model="_401kPercent" style="width: 34px" min="0"
+                                            class="ng-pristine ng-untouched ng-valid ng-valid-min">% 401k Employee
+                                        Contribution
+                                        <br>
+                                    </p>
                                 </p>
                             </td>
                         </tr>
@@ -240,7 +241,7 @@ js:
                                     class="ng-pristine ng-untouched ng-valid"> Eligible to make catch-up
                                 contributions
                                 <img src="{{ "/assets/img/help.png" | relative_url }}"
-                                    title="If you are 55 or older, you can make catch-up contributions, meaning you can deposit an additional $1,000.00 in 2020.">
+                                    title="If you are 55 or older, you can make catch-up contributions, meaning you can deposit an additional $1,000.00 in [[maximumYear]].">
                             </td>
                         </tr>
                     </tbody>
@@ -256,43 +257,46 @@ js:
                     <tbody>
                         <tr>
                             <th><strong>Income</strong></th>
-                            <th><strong>Amount</strong></th>
-                            <th><strong>Hours</strong></th>
+                            <th style="text-align: right;"><strong>Amount</strong></th>
                         </tr>
                         <tr>
-                            <td class="label">Payroll<img src="{{ "/assets/img/help.png" | relative_url }}"
+                            <td class="label">Payroll Rate<img src="{{ "/assets/img/help.png" | relative_url }}"
                                 title="Effective pay rate as it will appear on your pay stub." /></td>
                             <td class="value">[[payRate()|currency]]</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Payroll Income</td>
+                            <td class="value">[[payRate() * totalHours|currency]]</td>
                             <td class="value">[[totalHours]]</td>
                         </tr>
                         <tr>
-                            <td class="label">PTO:<img src="{{ "/assets/img/help.png" | relative_url }}"
-                                title="Income if all Accrued is cashed-out or used in the calendar year." /></td>
-                            <td class="value">[[annualPTOHours()|number:3]]</td>
+                            <td class="label">PTO Income<img src="{{ "/assets/img/help.png" | relative_url }}"
+                                title="Income from cashed-out or used PTO accrued in the calendar year." /></td>
                             <td class="value">[[annualPTOPay()|currency]]</td>
+                            <td class="value">[[payRate()|currency]] * [[annualPTOHours()|number:3]]</td>
                         </tr>
                         <tr>
-                            <td class="label">Gross Income:</td>
+                            <td class="label">Gross Income</td>
                             <td class="value">[[grossIncome()|currency]]</td>
-                            <td class="value">[[(grossIncome() / 12)|currency]]</td>
+                            <!-- <td class="value">[[grossIncome() / totalHours|currency]] * [[totalHours]]</td> -->
                         </tr>
                         <tr>
-                            <th><strong>Retirement</strong></th>
+                            <th><strong>Retirement Contribution</strong></th>
                         </tr>
                         <tr>
-                            <td class="label">Employee 401(k) Contribution:<img ng-show="employee401kContribution() == max401k()"
+                            <td class="label">Employee 401(k)<img ng-show="employee401kContribution() == max401k()"
                                 src="{{ "/assets/img/help.png" | relative_url }}"
                                 title="Your maximum employee 401(k) contribution for [[maxYear]] is [[max401k()|currency]]." /></td>
                             <td class="value">[[employee401kContribution()|currency]]</td>
                         </tr>
                         <tr>
-                            <td class="label">Company 401(k) Contribution:<img ng-show="employer401kContribution() == maxEmployer401kContribution()"
+                            <td class="label">Company 401(k)<img ng-show="employer401kContribution() == maxEmployer401kContribution()"
                                 src="{{ "/assets/img/help.png" | relative_url }}"
                                 title="The maximum employer contribution for [[maxYear]] is [[maxEmployer401kContribution()|currency]]." /></td>
                             <td class="value">[[employer401kContribution()|currency]]</td>
                         </tr>
                         <tr>
-                            <td class="label">Total 401(k) Contribution:</td>
+                            <td class="label">Total</td>
                             <td class="value">[[total401kContribution()|currency]]</td>
                             <td></td>
                         </tr>
@@ -300,7 +304,7 @@ js:
                             <th><strong>Benefits</strong></th>
                         </tr>
                         <tr>
-                            <td class="label">Annual Insurance Premiums:</td>
+                            <td class="label">Annual Insurance Cost:</td>
                             <td class="value">[[annualInsuranceRate()|currency]]</td>
                             <td></td>
                         </tr>

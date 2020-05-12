@@ -7,7 +7,7 @@
   location.search.substr(1).split("&").forEach(function (item) {
     queryDict[item.split("=")[0]] = item.split("=")[1]
   });
-  
+
   // interpolateProvider: https://katydecorah.com/code/jekyll-and-angular/
   var app = angular.module('benefitCalculator', [],
     function ($interpolateProvider) {
@@ -21,6 +21,7 @@
       $scope.settings = settings;
       $scope.config = settings.config;
       $scope.planYear = settings.config.planYear;
+      $scope.maximumYear = settings.config.maximumYear;
       $scope.insurancePlans = settings[settings.config.planYear].fixed_employee;
       $scope.stdAgeMap = settings[settings.config.planYear].stdlife;
       $scope.hsaMaximums = settings[settings.config.maximumYear].maximums.hsa;
@@ -28,7 +29,6 @@
       $scope._401kEmployerContribution = settings[settings.config.maximumYear]._401kEmployerContribution;
       $scope.benefits = Object.keys($scope.insurancePlans);
       $scope.planLevels = settings.levels;
-      $scope.totalHours = settings.config.salaryHours;
       $scope.$apply()
     });
 
@@ -37,7 +37,13 @@
     if (queryDict.hasOwnProperty('tcr') && parseFloat(queryDict.tcr) > 0) {
       $scope.tcRate = parseFloat(queryDict.tcr);
     }
+    if (queryDict.hasOwnProperty('rate') && parseFloat(queryDict.rate) > 0) {
+      $scope.tcRate = parseFloat(queryDict.rate);
+    }
     $scope.totalHours = 1840;
+    if (queryDict.hasOwnProperty('hours') && parseFloat(queryDict.hours) > 0) {
+      $scope.totalHours = parseFloat(queryDict.hours);
+    }
 
     // PTO
     $scope.ptoPlan = 30;
@@ -173,8 +179,7 @@
     };
 
     $scope.timeOff = function () {
-      var days = ($scope.config.stdHours - $scope.totalHours) / 8;
-      return days;
+      return ($scope.config.stdHours - $scope.totalHours) / 8;
     };
 
     $scope.grossIncome = function () {
