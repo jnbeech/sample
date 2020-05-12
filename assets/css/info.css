@@ -1,0 +1,57 @@
+/* column container */
+.colmask {
+  clear:both;
+  float:left;
+  width:100%;			/* width of whole page */
+  overflow:hidden;		/* This chops off any overhanging divs */
+}
+/* common column settings */
+.colright,
+.colmid,
+.colleft {
+  float:left;
+  width:100%;
+  position:relative;
+}
+.col1,
+.col2,
+.col3 {
+  float:left;
+  position:relative;
+  padding:0 0 0 0;
+  overflow:hidden;
+}
+/* 2 Column (double page) settings */
+.doublepage {
+}
+.doublepage .colleft {
+  right:50%;			/* right column width */
+}
+.doublepage .col1 {
+  width:58%;			/* left column content width (column width minus left and right padding) */
+  left:51%;			/* right column width plus left column left padding */
+}
+.doublepage .col2 {
+  width:38%;			/* right column content width (column width minus left and right padding) */
+  left:53%;			/* (right column width) plus (left column left and right padding) plus (right column left padding) */
+}
+div.pay-calculator {margin-top: 16px;}
+#summary th {text-align: left;}
+#summary td.value {text-align: right; width: 120px;}
+div.pay-calculator img {vertical-align: text-bottom;}
+.muted {
+  font-size: 0.9em;
+  color: #aaa;
+}
+
+table.benefits th {
+  text-align: left;
+}
+
+table.hsa td {
+  width: 90px;
+}
+
+table p {
+  margin-bottom: 10px;
+}
