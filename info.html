@@ -114,8 +114,8 @@ js:
             </fieldset>
             <br>
             <fieldset ng-disabled="payRate() &lt;= 0" disabled="disabled">
-                <legend>Insurance Benefits</legend>
-                <p>&nbsp;<i class="ng-binding">Insurance benefit options are effective January 1, {{planYear}}.</i>
+                <legend>Benefits</legend>
+                <p>&nbsp;<i class="ng-binding">Insurance benefits are effective January 1, {{planYear}}.</i>
                 </p>
                 <table class="benefits" style="width: 100%;">
                     <tbody>
@@ -251,7 +251,7 @@ js:
         <div class="col2">
             <!-- RIGHT -->
             <fieldset>
-                <legend>Annual Summary</legend>
+                <legend>Summary</legend>
                 <table id="summary">
                     <tbody>
                         <tr>
@@ -269,11 +269,11 @@ js:
                             <td class="value">{{totalHours}}</td>
                         </tr>
                         <tr>
-                            <td class="label">PTO Hours Accrued:</td>
+                            <td class="label">Flexible Leave Hours Accrued:</td>
                             <td class="value">{{annualPTOHours()|number:3}}</td>
                         </tr>
                         <tr>
-                            <td class="label">PTO Pay:</td>
+                            <td class="label">Flexible Leave Pay:</td>
                             <td class="value">{{annualPTOPay()|currency}}</td>
                             <td><img src="{{ "/assets/img/help.png" | relative_url }}"
                                     title="Income from PTO if all PTO is used in the calendar year." /></td>

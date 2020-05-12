@@ -13,7 +13,9 @@
     // Get settings
     $.getJSON("/sample/assets/settings.json").then(function (settings) {
       $scope.settings = settings;
+      console.log($scope.settings)
       $scope.config = settings.config;
+      console.log($scope.config)
       $scope.planYear = settings.config.planYear;
       $scope.insurancePlans = settings[settings.config.planYear].fixed_employee;
       $scope.stdAgeMap = settings[settings.config.planYear].stdlife;
@@ -24,6 +26,7 @@
       $scope.planLevels = settings.levels;
       $scope.totalHours = settings.config.salaryHours;
       $scope.$apply()
+      console.log($scope)
     });
 
     // Income
