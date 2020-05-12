@@ -9,7 +9,7 @@
 
   app.controller('MainController', ['$scope', '$http', function($scope, $http) {
     // Get settings
-    $.getJSON("{{ "/assets/settings.json" | relative_url }}").then(function(settings) {
+    $.getJSON("/sample/assets/settings.json").then(function(settings) {
       $scope.settings = settings;
       $scope.config = settings.config;
       $scope.planYear = settings.config.planYear;
